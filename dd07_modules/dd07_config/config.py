@@ -53,6 +53,8 @@ class ConfigBasic():
         #     'dbBls':self.DB_BLS}
         
         # # other directories
+        self.DIR_DB_AUXILARY = os.path.join(self.DB_ROOT,"auxilary")
+        self.DIR_DB_AUX_IMAGES_PEOPLE = os.path.join(self.DIR_DB_AUXILARY,"images_people")
         # self.WORD_DOC_DIR = config.get('WORD_DOC_DIR_MAC')
         # self.PEOPLE_DIR = config.get('PEOPLE_DIR_MAC')
         # setupSqlBinds()

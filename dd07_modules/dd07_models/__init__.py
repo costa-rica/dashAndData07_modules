@@ -12,9 +12,12 @@ import os
 if not os.path.exists(os.environ.get('DB_ROOT')):
     os.makedirs(os.environ.get('DB_ROOT'))
 
-# # config.DIR_DB_FILES_TEMPORARY directory:
-# if not os.path.exists(os.path.join(os.environ.get('DB_ROOT'),"files_temp")):
-#     os.makedirs(os.path.join(os.environ.get('DB_ROOT'),"files_temp"))
+# config.DIR_DB_AUXILARY directory:
+if not os.path.exists(os.path.join(os.environ.get('DB_ROOT'),"auxilary")):
+    os.makedirs(os.path.join(os.environ.get('DB_ROOT'),"auxilary"))
+# config.DIR_DB_AUX_IMAGES_PEOPLE directory:
+if not os.path.exists(os.path.join(os.environ.get('DB_ROOT'),"auxilary","images_people")):
+    os.makedirs(os.path.join(os.environ.get('DB_ROOT'),"auxilary","images_people"))
 
 # # config.DIR_DB_FILES_UTILITY directory:
 # if not os.path.exists(os.path.join(os.environ.get('DB_ROOT'),"files_utility")):

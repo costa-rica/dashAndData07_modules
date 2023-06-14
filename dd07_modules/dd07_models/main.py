@@ -5,9 +5,6 @@ from .Base import Base, sess_users, sess_cage, sess_bls, \
     engine_users, engine_cage, engine_bls
 
 
-# from .modelsUsers import Users
-# from .modelsInvestigations import Investigations, Tracking_inv, Saved_queries_inv, \
-#     Recalls, Tracking_re, Saved_queries_re
 from .modelsUsers import Users, BlogPosts
 from .modelsCage import CageCompanies
 from .modelsBls import IndustryNames, IndustryValues, \
