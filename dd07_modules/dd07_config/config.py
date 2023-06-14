@@ -3,10 +3,19 @@ import json
 from dotenv import load_dotenv
 
 load_dotenv()
-
-
-with open(os.path.join(os.environ.get('CONFIG_PATH'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
-    env_dict = json.load(env_file)
+print("- reading modules/ config.py")
+print(f"- FLASK_ENV: {os.environ.get('FLASK_CONFIG_TYPE')}")
+if os.path.join(os.environ.get('FLASK_CONFIG_TYPE'))  == 'local':
+    print("- reading CONFIG_PATH_LOCAL")
+    print(f"- {os.environ.get('CONFIG_PATH_LOCAL')}")
+    print(f"- {os.environ.get('CONFIG_FILE_NAME')}")
+    # print("- reading CONFIG_PATH_LOCAL")
+    with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+        env_dict = json.load(env_file)
+else:
+    print("- reading CONFIG_PATH_PROD")
+    with open(os.path.join(os.environ.get('CONFIG_PATH_PROD'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+        env_dict = json.load(env_file)
 
 
 
@@ -70,7 +79,8 @@ class ConfigLocal(ConfigBasic):
     DEBUG = True
     # TEMPLATES_AUTO_RELOAD = False
     ## removed 2023-03-06: not clear why I had it but it certainly no good for working on the front end.
-    SCHED_CONFIG_STRING = "ConfigLocal"
+    # SCHED_CONFIG_STRING = "ConfigLocal"
+    CONFIG_TYPE='local'
 
 
 class ConfigDev(ConfigBasic):
@@ -89,7 +99,8 @@ class ConfigDev(ConfigBasic):
     DEBUG = True
     # SQL_URI = env_dict.get('SQL_URI_DEVELOPMENT')
     TEMPLATES_AUTO_RELOAD = True
-    SCHED_CONFIG_STRING = "ConfigDev"
+    # SCHED_CONFIG_STRING = "ConfigDev"
+    CONFIG_TYPE='dev'
 
 
 class ConfigProd(ConfigBasic):
@@ -108,4 +119,5 @@ class ConfigProd(ConfigBasic):
     DEBUG = False
     TESTING = False
     PROPAGATE_EXCEPTIONS = True
-    SCHED_CONFIG_STRING = "ConfigProd"
+    # SCHED_CONFIG_STRING = "ConfigProd"
+    CONFIG_TYPE='prod'
