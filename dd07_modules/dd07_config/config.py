@@ -3,19 +3,30 @@ import json
 from dotenv import load_dotenv
 
 load_dotenv()
-print("- reading modules/ config.py")
-print(f"- FLASK_ENV: {os.environ.get('FLASK_CONFIG_TYPE')}")
-if os.path.join(os.environ.get('FLASK_CONFIG_TYPE'))  == 'local':
-    print("- reading CONFIG_PATH_LOCAL")
-    print(f"- {os.environ.get('CONFIG_PATH_LOCAL')}")
-    print(f"- {os.environ.get('CONFIG_FILE_NAME')}")
-    # print("- reading CONFIG_PATH_LOCAL")
-    with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
-        env_dict = json.load(env_file)
-else:
-    print("- reading CONFIG_PATH_PROD")
-    with open(os.path.join(os.environ.get('CONFIG_PATH_PROD'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
-        env_dict = json.load(env_file)
+print("- reading dd07modules/dd07_config/config.py")
+print(f"- FLASK_ENV: {os.environ.get('FLASK_ENV')}")
+print(f"- FLASK_DEBUG: {os.environ.get('FLASK_DEBUG')}")
+
+match os.environ.get('FLASK_ENV'):
+    case 'dev' | 'prod':
+        with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+            env_dict = json.load(env_file)
+    case _:
+        with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+            env_dict = json.load(env_file)
+
+
+# if os.path.join(os.environ.get('FLASK_ENV'))  == 'local':
+#     print("- reading CONFIG_PATH_LOCAL")
+#     # print(f"- {os.environ.get('CONFIG_PATH_LOCAL')}")
+#     # print(f"- {os.environ.get('CONFIG_FILE_NAME')}")
+#     # print("- reading CONFIG_PATH_LOCAL")
+#     with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+#         env_dict = json.load(env_file)
+# else:
+#     print("- reading CONFIG_PATH_PROD")
+#     with open(os.path.join(os.environ.get('CONFIG_PATH_PROD'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+#         env_dict = json.load(env_file)
 
 
 
@@ -80,7 +91,7 @@ class ConfigLocal(ConfigBasic):
     # TEMPLATES_AUTO_RELOAD = False
     ## removed 2023-03-06: not clear why I had it but it certainly no good for working on the front end.
     # SCHED_CONFIG_STRING = "ConfigLocal"
-    CONFIG_TYPE='local'
+    # CONFIG_TYPE='local'
 
 
 class ConfigDev(ConfigBasic):
@@ -100,7 +111,7 @@ class ConfigDev(ConfigBasic):
     # SQL_URI = env_dict.get('SQL_URI_DEVELOPMENT')
     TEMPLATES_AUTO_RELOAD = True
     # SCHED_CONFIG_STRING = "ConfigDev"
-    CONFIG_TYPE='dev'
+    # CONFIG_TYPE='dev'
 
 
 class ConfigProd(ConfigBasic):
@@ -120,4 +131,4 @@ class ConfigProd(ConfigBasic):
     TESTING = False
     PROPAGATE_EXCEPTIONS = True
     # SCHED_CONFIG_STRING = "ConfigProd"
-    CONFIG_TYPE='prod'
+    # CONFIG_TYPE='prod'
