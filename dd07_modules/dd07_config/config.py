@@ -8,12 +8,18 @@ print(f"- FLASK_ENV: {os.environ.get('FLASK_ENV')}")
 print(f"- FLASK_DEBUG: {os.environ.get('FLASK_DEBUG')}")
 
 match os.environ.get('FLASK_ENV'):
-    case 'dev' | 'prod':
+    case 'dev' :
         with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
             env_dict = json.load(env_file)
+        os.environ["WEB_ROOT"] = "/home/nick/applications/dashAndData07_dev/"
+    case 'prod' :
+        with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+            env_dict = json.load(env_file)
+        os.environ["WEB_ROOT"] = "/home/nick/applications/dashAndData07/"
     case _:
         with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
             env_dict = json.load(env_file)
+        os.environ["WEB_ROOT"] = "/Users/nick/Documents/dashAndData07/"
 
 
 # if os.path.join(os.environ.get('FLASK_ENV'))  == 'local':
