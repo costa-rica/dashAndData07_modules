@@ -92,6 +92,8 @@ class ConfigLocal(ConfigBasic):
         # # other directories
         self.DIR_DB_AUXILARY = os.path.join(self.DB_LOCAL_ROOT,"auxilary")
         self.DIR_DB_AUX_IMAGES_PEOPLE = os.path.join(self.DIR_DB_AUXILARY,"images_people")
+        self.DIR_DB_AUX_BLOG = os.path.join(self.DIR_DB_AUXILARY,"blog")
+        self.DIR_DB_AUX_BLOG_POSTS = os.path.join(self.DIR_DB_AUXILARY,"blog","posts")
 
     DEBUG = True
     # TEMPLATES_AUTO_RELOAD = False
@@ -112,6 +114,8 @@ class ConfigDev(ConfigBasic):
         # # other directories
         self.DIR_DB_AUXILARY = os.path.join(self.DB_DEV_ROOT,"auxilary")
         self.DIR_DB_AUX_IMAGES_PEOPLE = os.path.join(self.DIR_DB_AUXILARY,"images_people")
+        self.DIR_DB_AUX_BLOG = os.path.join(self.DIR_DB_AUXILARY,"blog")
+        self.DIR_DB_AUX_BLOG_POSTS = os.path.join(self.DIR_DB_AUXILARY,"blog","posts")
 
     DEBUG = True
     # SQL_URI = env_dict.get('SQL_URI_DEVELOPMENT')
@@ -132,6 +136,8 @@ class ConfigProd(ConfigBasic):
         # # other directories
         self.DIR_DB_AUXILARY = os.path.join(self.DB_PROD_ROOT,"auxilary")
         self.DIR_DB_AUX_IMAGES_PEOPLE = os.path.join(self.DIR_DB_AUXILARY,"images_people")
+        self.DIR_DB_AUX_BLOG = os.path.join(self.DIR_DB_AUXILARY,"blog")
+        self.DIR_DB_AUX_BLOG_POSTS = os.path.join(self.DIR_DB_AUXILARY,"blog","posts")
 
     DEBUG = False
     TESTING = False
