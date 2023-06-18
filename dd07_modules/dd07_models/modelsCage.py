@@ -1,10 +1,13 @@
 print("- in modelsCage")
-from .main import Base, sess_cage
+# from .main import Base_cage, sess_cage
+from .main import dict_base
 # from sqlalchemy.orm import sessionmaker, Session, relationship
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
     Date, Boolean, Table
 
-class CageCompanies(Base):
+Base_cage = dict_base['Base_cage']
+
+class CageCompanies(Base_cage):
     # __bind_key__ = 'Cage_bind'
     __tablename__ = 'cage_companies'
     CAGE_code = Column(String(5),primary_key=True)

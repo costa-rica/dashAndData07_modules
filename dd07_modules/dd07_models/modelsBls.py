@@ -1,12 +1,14 @@
 print("- in modelsBls")
-from .main import Base, sess_bls
+from .main import dict_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
     Date, Boolean, Table
 
 
+Base_bls = dict_base['Base_bls']
+
 #From folioApp.models.py
-class IndustryNames(Base):
+class IndustryNames(Base_bls):
     # __bind_key__ = 'dbBls'
     __tablename__ = 'industry_names'
     # id = Column(Integer, primary_key=True)
@@ -27,7 +29,7 @@ class IndustryNames(Base):
     def __repr__(self):
         return f"IndustryNames({self.series_id},{self.series_title})"
 
-class IndustryValues(Base):
+class IndustryValues(Base_bls):
     # __bind_key__ = 'dbBls'
     __tablename__ = 'industry_values'
     id = Column(Integer, primary_key=True)
@@ -43,7 +45,7 @@ class IndustryValues(Base):
         return f"IndustryValues({self.id},{self.series_id},{self.year},{self.period},{self.value})"
 
 
-class CommodityNames(Base):
+class CommodityNames(Base_bls):
     # __bind_key__ = 'dbBls'
     __tablename__ = 'commodity_names'
     series_id = Column(String(200), primary_key=True)
@@ -63,7 +65,7 @@ class CommodityNames(Base):
     def __repr__(self):
         return f"CommodityNames({self.series_id},{self.series_title})"
 
-class CommodityValues(Base):
+class CommodityValues(Base_bls):
     # __bind_key__ = 'dbBls'
     __tablename__ = 'commodity_values'
     id = Column(Integer, primary_key=True)

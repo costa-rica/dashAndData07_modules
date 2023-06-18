@@ -1,5 +1,6 @@
 print("- in modelsUsers")
-from .main import Base, sess_users
+# from .main import Base_users, sess_users
+from .main import dict_base, dict_sess
 from sqlalchemy.orm import sessionmaker, Session, relationship
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
     Date, Boolean, Table
@@ -13,14 +14,15 @@ from .config import config
 import os
 from flask import current_app
 
-
+Base_users = dict_base['Base_users']
+sess_users = dict_sess['sess_users']
 
 def default_username(context):
     return context.get_current_parameters()['email'].split('@')[0]
 
 
 
-class Users(Base, UserMixin):
+class Users(Base_users, UserMixin):
     __tablename__ = 'users'
     id = Column(Integer, primary_key = True)
     email = Column(Text, unique = True, nullable = False)
@@ -51,8 +53,7 @@ class Users(Base, UserMixin):
         return f'Users(id: {self.id}, email: {self.email}, permission: {self.permission})'
 
 
-
-class BlogPosts(Base):
+class BlogPosts(Base_users):
     __tablename__ = 'blog_posts'
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -60,7 +61,9 @@ class BlogPosts(Base):
     description = Column(Text)
     date_published = Column(DateTime, nullable=False, default=datetime.now)
     edited = Column(Text)
-    word_doc = Column(Text)
+    post_dir_name = Column(Text)
+    word_doc_to_html_filename = Column(Text)
+    images_dir_name = Column(Text)
     notes = Column(Text)
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
 
