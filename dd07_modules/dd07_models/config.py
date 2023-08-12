@@ -1,7 +1,7 @@
 import os
 from dd07_config import ConfigDev, ConfigProd, ConfigLocal
 
-match os.environ.get('FLASK_ENV'):
+match os.environ.get('FLASK_CONFIG_TYPE'):
     case 'dev':
         config = ConfigDev()
         print('- dd07_models/config: Development')

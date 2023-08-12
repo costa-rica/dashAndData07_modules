@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 print("- reading dd07modules/dd07_config/config.py")
-print(f"- FLASK_ENV: {os.environ.get('FLASK_ENV')}")
+print(f"- FLASK_CONFIG_TYPE: {os.environ.get('FLASK_CONFIG_TYPE')}")
 print(f"- FLASK_DEBUG: {os.environ.get('FLASK_DEBUG')}")
 
-match os.environ.get('FLASK_ENV'):
+match os.environ.get('FLASK_CONFIG_TYPE'):
     case 'dev' :
         with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
             env_dict = json.load(env_file)
@@ -22,7 +22,7 @@ match os.environ.get('FLASK_ENV'):
         os.environ["WEB_ROOT"] = "/Users/nick/Documents/dashAndData07/"
 
 
-# if os.path.join(os.environ.get('FLASK_ENV'))  == 'local':
+# if os.path.join(os.environ.get('FLASK_CONFIG_TYPE'))  == 'local':
 #     print("- reading CONFIG_PATH_LOCAL")
 #     # print(f"- {os.environ.get('CONFIG_PATH_LOCAL')}")
 #     # print(f"- {os.environ.get('CONFIG_FILE_NAME')}")
