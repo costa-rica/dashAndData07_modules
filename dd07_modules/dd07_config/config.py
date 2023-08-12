@@ -11,28 +11,13 @@ match os.environ.get('FLASK_CONFIG_TYPE'):
     case 'dev' :
         with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
             env_dict = json.load(env_file)
-        os.environ["WEB_ROOT"] = "/home/nick/applications/dashAndData07_dev/"
     case 'prod' :
         with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
             env_dict = json.load(env_file)
-        os.environ["WEB_ROOT"] = "/home/nick/applications/dashAndData07/"
     case _:
         with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
             env_dict = json.load(env_file)
-        os.environ["WEB_ROOT"] = "/Users/nick/Documents/dashAndData07/"
 
-
-# if os.path.join(os.environ.get('FLASK_CONFIG_TYPE'))  == 'local':
-#     print("- reading CONFIG_PATH_LOCAL")
-#     # print(f"- {os.environ.get('CONFIG_PATH_LOCAL')}")
-#     # print(f"- {os.environ.get('CONFIG_FILE_NAME')}")
-#     # print("- reading CONFIG_PATH_LOCAL")
-#     with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
-#         env_dict = json.load(env_file)
-# else:
-#     print("- reading CONFIG_PATH_PROD")
-#     with open(os.path.join(os.environ.get('CONFIG_PATH_PROD'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
-#         env_dict = json.load(env_file)
 
 
 
